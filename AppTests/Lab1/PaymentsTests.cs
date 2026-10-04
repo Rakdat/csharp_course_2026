@@ -1,4 +1,3 @@
-using App;
 using App.Lab1;
 
 namespace AppTests.Lab1;
