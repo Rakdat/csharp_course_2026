@@ -23,6 +23,8 @@ public class PaymentsTests
     // Кредит на 1 месяц (аннуитет и дифференцированный должны быть равны)
     [TestCase(PaymentsPlan.Annuity, 12, 1, 10000, 10100)]
     [TestCase(PaymentsPlan.Differentiated, 12, 1, 10000, 10100)]
+    
+    [TestCase(PaymentsPlan.Differentiated, -12, 1, 10000, 10100)]
     public void TestPasses_When_Result_Correct(PaymentsPlan plan, decimal rate, int monthsCount, decimal amount, decimal expected)
     {
         var actual = Payments.CalculateTotalPayments(plan, rate, monthsCount, amount);

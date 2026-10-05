@@ -5,39 +5,56 @@ public static class Prices
     public static string GetCurrencyAlias(int price, bool isShorNotation, bool isFirstCapital)
     {
         var lastDigit = price % 10;
+        if (isShorNotation)
+        {
+            return "Руб.";
+        }
 
+        string res;
         switch (lastDigit)
         {
             case 1:
                 if (price % 100 == 11)
                 {
-                    return "рублей";
+                    res = "рублей";
                 }
 
-                return "рубль";
+                res = "рубль";
+                break;
             case 2:
                 if (price % 100 == 12)
                 {
-                    return "рублей";
+                    res = "рублей";
                 }
 
-                return "рубля";
+                res = "рубля";
+                break;
             case 3:
                 if (price % 100 == 13)
                 {
-                    return "рублей";
+                    res = "рублей";
                 }
 
-                return "рубля";
+                res = "рубля";
+                break;
             case 4:
                 if (price % 100 == 14)
                 {
-                    return "рублей";
+                    res = "рублей";
                 }
 
-                return "рубля";
+                res = "рубля";
+                break;
             default:
-                return "рублей";
+                res = "рублей";
+                break;
         }
+
+        if (isFirstCapital)
+        {
+            res = char.ToUpper(res[0]) + res[1..];
+        }
+
+        return res;
     }
 }
