@@ -10,13 +10,13 @@ public class Frequency
             freq.Add(key, value);
         }
         
-        if (!value.TryGetValue(val, out var intvalue))
+        if (!value.TryGetValue(val, out var count))
             freq[key].Add(val, 1);
         else
-            freq[key][val] = ++intvalue;
+            freq[key][val] = ++count;
     }
 
-    private static void AddRes(Dictionary<string, Dictionary<string, int>> freq, Dictionary<string, string> result)
+    private static void AddResponse(Dictionary<string, Dictionary<string, int>> freq, Dictionary<string, string> result)
     {
         foreach (var i in freq.Keys)
         {
@@ -39,11 +39,11 @@ public class Frequency
         var frequencyStatsTre = new Dictionary<string, Dictionary<string, int>>();
         
         var lower = inputString.ToLower();
-        var sentences = lower.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+        var sentences = lower.Split('.', StringSplitOptions.RemoveEmptyEntries);
 
         foreach (var sentence in sentences)
         {
-            var words = sentence.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            var words = sentence.Split(' ', StringSplitOptions.RemoveEmptyEntries);
             
             if (words.Length < 2) 
                 continue;
@@ -63,8 +63,8 @@ public class Frequency
         }
 
         var res = new  Dictionary<string, string>();
-        AddRes(frequencyStatsBi, res);
-        AddRes(frequencyStatsTre, res);
+        AddResponse(frequencyStatsBi, res);
+        AddResponse(frequencyStatsTre, res);
 
         return res;
     }

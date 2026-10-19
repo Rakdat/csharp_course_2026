@@ -6,17 +6,18 @@ public class StackMachine
 {
     public static string CalculateString(string[] codeLines) 
     {
-        var result = string.Empty;
+        var result = new StringBuilder();
         foreach (var i in codeLines)
         {
             if (i.StartsWith("push"))
-                result +=  i.Length > 5 ? i[5..] : "";
-            else if (i.StartsWith("pop"))
+                if(i.Length > 5)
+                    result.Append(i.AsSpan(5));
+            else
             {
-                var valuetodelete =  int.Parse(i[4..]);
-                result = result[..^valuetodelete];
+                var valuetodelete =  int.Parse(i.AsSpan(4));
+                result.Length -= valuetodelete;
             }
         }
-        return result;
+        return result.ToString();
     }
 }
