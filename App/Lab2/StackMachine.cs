@@ -10,8 +10,10 @@ public class StackMachine
         foreach (var i in codeLines)
         {
             if (i.StartsWith("push"))
-                if(i.Length > 5)
+            {
+                if (i.Length > 5)
                     result.Append(i.AsSpan(5));
+            }
             else
             {
                 var valuetodelete =  int.Parse(i.AsSpan(4));
