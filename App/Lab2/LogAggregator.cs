@@ -1,21 +1,59 @@
-using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace App.Lab2;
 
 public class LogAggregator
 {
-    private static readonly Regex LogPattern = new Regex(
-        @"^\[\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]) ([01]\d|2[0-3]):[0-5]\d:[0-5]\d\] \[[a-zA-Z0-9-]+\] [a-zA-Z0-9_]+: .+$",
-        RegexOptions.Compiled
-    );
-
     private static (string TraceId, string NewMessage) ParseLogLine(string message)
     {
-        var firstCloseBracket = message.IndexOf(']');
-        var traceIdStart = firstCloseBracket + 3;
-        var traceIdEnd = message.IndexOf(']', traceIdStart);
-        var traceId = message.Substring(traceIdStart, traceIdEnd - traceIdStart);
-        var newMessage = message.Remove(firstCloseBracket + 1, traceIdEnd - firstCloseBracket);
+        if (string.IsNullOrEmpty(message) || message.Length < 30)
+            return (string.Empty, string.Empty);
+
+        if (message[0] != '[' || message[20] != ']' || message[21] != ' ' || message[22] != '[')
+            return (string.Empty, string.Empty);
+        
+        if (!DateTime.TryParseExact(
+                message.AsSpan(1, 19),
+                "yyyy-MM-dd HH:mm:ss",
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
+                out _))
+        {
+            return (string.Empty, string.Empty);
+        }
+
+        var traceIdEnd = message.IndexOf(']', 23);
+        if (traceIdEnd <= 23)
+            return (string.Empty, string.Empty);
+
+        for (var i = 23; i < traceIdEnd; i++)
+        {
+            var c = message[i];
+            if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') || c == '-'))
+                return (string.Empty, string.Empty);
+        }
+
+        if (traceIdEnd + 1 >= message.Length || message[traceIdEnd + 1] != ' ')
+            return (string.Empty, string.Empty);
+
+        var serviceStart = traceIdEnd + 2;
+        var serviceEnd = message.IndexOf(':', serviceStart);
+        if (serviceEnd <= serviceStart)
+            return (string.Empty, string.Empty);
+
+        for (var i = serviceStart; i < serviceEnd; i++)
+        {
+            var c = message[i];
+            if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') || c == '_'))
+                return (string.Empty, string.Empty);
+        }
+
+        if (serviceEnd + 2 >= message.Length || message[serviceEnd + 1] != ' ')
+            return (string.Empty, string.Empty);
+        
+        var traceId = message.Substring(23, traceIdEnd - 23);
+        var newMessage = message.Remove(21, traceIdEnd - 20);
+
         return (traceId, newMessage);
     }
     public static string MergeLogs(params string[] logLines)
@@ -25,10 +63,9 @@ public class LogAggregator
         var dict = new Dictionary<string, List<string>>();
         foreach (var message in logLines)
         {
-            if (string.IsNullOrEmpty(message) || !LogPattern.IsMatch(message)) continue;
-            
             var (traceId, newMessage) = ParseLogLine(message);
-
+            if (string.IsNullOrEmpty(traceId)) continue;
+            
             if (!dict.TryGetValue(traceId, out var value))
             {
                 value = [];

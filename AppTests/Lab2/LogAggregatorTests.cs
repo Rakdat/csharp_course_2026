@@ -97,7 +97,7 @@ public class LogAggregatorTests
         var result = LogAggregator.MergeLogs(
             "This is just some random text",
             "[2023-10-25 14:00:00] [trace-1] GoodService: Valid log",
-            "[2023-99-99 14:00:00] [trace-2] BadService: Invalid date format", // Предполагается, что регулярка строгая
+            "[2023-99-99 14:00:00] [trace-2] BadService: Invalid date format",
             "[2023-10-25 14:00:01] [trace-1] GoodService: Valid log 2",
             "[2023-10-25 14:00:02] MissingBrackets Service: Fail"
         );
