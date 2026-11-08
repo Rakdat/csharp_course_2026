@@ -22,6 +22,8 @@
 
     <ItemGroup>
       <ProjectReference Include="..\App\App.csproj" />
+      <ProjectReference Include="..\Marketplace.App\Marketplace.App.csproj" />
+      <ProjectReference Include="..\Marketplace.Core\Marketplace.Core.csproj" />
     </ItemGroup>
 
 </Project>

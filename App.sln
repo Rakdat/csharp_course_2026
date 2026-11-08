@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "App\App.csproj", "{4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppTests", "AppTests\AppTests.csproj", "{B988E016-CA98-40CB-B971-46ECD2C0EEB3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Core", "Marketplace.Core\Marketplace.Core.csproj", "{3D822916-4E92-4C0E-A85E-900B75FCC6DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.App", "Marketplace.App\Marketplace.App.csproj", "{C3F9D488-50D9-4DCD-BB0C-0DE6B893F105}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{B988E016-CA98-40CB-B971-46ECD2C0EEB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B988E016-CA98-40CB-B971-46ECD2C0EEB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B988E016-CA98-40CB-B971-46ECD2C0EEB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D822916-4E92-4C0E-A85E-900B75FCC6DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D822916-4E92-4C0E-A85E-900B75FCC6DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D822916-4E92-4C0E-A85E-900B75FCC6DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D822916-4E92-4C0E-A85E-900B75FCC6DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3F9D488-50D9-4DCD-BB0C-0DE6B893F105}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3F9D488-50D9-4DCD-BB0C-0DE6B893F105}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3F9D488-50D9-4DCD-BB0C-0DE6B893F105}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3F9D488-50D9-4DCD-BB0C-0DE6B893F105}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
