@@ -7,8 +7,4 @@
         <Nullable>disable</Nullable>
     </PropertyGroup>
 
-    <ItemGroup>
-      <Folder Include="Lab3\" />
-    </ItemGroup>
-
 </Project>
