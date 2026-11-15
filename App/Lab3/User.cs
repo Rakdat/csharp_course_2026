@@ -1,21 +1,22 @@
+using System;
 using System.Text;
-using System.Text.RegularExpressions;
 
 namespace App.Lab3;
 
 public class User
 {
+    private static int counter = 0;
+    
     private readonly int id;
     private readonly DateTime registerDate;
-    private string login;
-    private string password;
-    private string name;
-    private string surname;
-    private int inn;
+    private readonly string login;
+    private readonly string password;
+    private readonly string name;
+    private readonly string surname;
+    private readonly string inn;
     private string phone;
     
-    private static int counter = 0;
-    public User(string login, string password, string name, string surname, int inn, string phone)
+    public User(string login, string password, string name, string surname, string inn, string phone)
     {
         this.login = login;
         this.password = password;
@@ -25,23 +26,24 @@ public class User
         registerDate = DateTime.Now;
         id = counter++;
         
-        this.phone = TryNormalizePhone(phone, out string normalizedPhone) ? normalizedPhone : "Invalid";
+        if (!TryUpdatePhone(phone))
+            throw new ArgumentException("Неверный формат номера телефона.", nameof(phone));
     }
     
     public string GetUserFullName() => name + " " + surname;
     
-    public string Phone => phone;
+    public string GetPhone() => phone;
 
     public bool TryUpdatePhone(string rawPhone)
     {
-        if (!TryNormalizePhone(rawPhone, out var normalizedPhone))
+        if (!IsPhoneValid(rawPhone, out var normalizedPhone))
             return false;
         
         this.phone = normalizedPhone;
         return true;
     }
     
-    private static bool TryNormalizePhone(string input, out string normalized)
+    private static bool IsPhoneValid(string input, out string normalized)
     {
         normalized = string.Empty;
         if (string.IsNullOrWhiteSpace(input)) return false;
@@ -83,11 +85,6 @@ public class User
         if (digitsCount is < 10 or > 15) return false;
         normalized = sb.ToString();
         return true;
-
     }
-    
-    public override string ToString()
-    {
-        return $"ID: {id}, Login: {login}, Password {password}, Name: {GetUserFullName()}, Phone: {phone}, Inn: {inn}, RegisterDate: {registerDate}, ";
-    }
+    public override string ToString() => $"ID: {id}, Login: {login}, Password {password}, Name: {GetUserFullName()}, Phone: {phone}, Inn: {inn}, RegisterDate: {registerDate}";
 }
