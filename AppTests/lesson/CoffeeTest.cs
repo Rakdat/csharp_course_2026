@@ -17,7 +17,7 @@ public class CoffeeTest
         Assert.That(coffee.GetOrderPrice(), Is.EqualTo(expectedTotal));
     }
 
-    [TestCase(new string[] { "Эспресо 2", "Латте -3", "Круассан 1" }, 320)] // 200 + 120
+    [TestCase(new string[] { "Эспресо 2", "Латте -3", "Круассан 1" }, 320)]
     public void Add_WithNegativeCount_SkipsInvalidItem_AndCalculatesTotal(string[] items, decimal expectedTotal)
     {
         var coffee = new Coffee();
@@ -50,5 +50,26 @@ public class CoffeeTest
         }
         
         Assert.That(coffee.GetOrder(), Is.EqualTo(expectedReceipt));
+    }
+    
+    [TestCase(new string[] { "AAA 1", "Капучино 1" }, new string[] { "Капучино x1 150" })]
+    public void ValidateIncorrectName(string[] items, string[] expected)
+    {
+        var coffee = new Coffee();
+        var errorCaught = false;
+
+        foreach (var item in items)
+        {
+            try
+            {
+                coffee.Add(item);
+            }
+            catch (ArgumentException ex)
+            {
+                errorCaught = true; 
+            }
+        }
+        Assert.That(coffee.GetOrder(), Is.EqualTo(expected));
+        Assert.That(errorCaught, Is.True, "Поймали исключение на неправильном имени");
     }
 }
