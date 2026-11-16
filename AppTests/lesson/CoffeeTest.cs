@@ -4,12 +4,11 @@ namespace AppTests.lesson;
 
 public class CoffeeTest
 {
-    [Test]
-    public void EmptyOrder_Returns_Zero()
+    [TestCase(new string[0], 0)]
+    [TestCase(new string[] {"Эспресо"}, 100)]
+    public void ValidOrder_Returns_ExpectedPrices(string[] order, decimal expected)
     {
         var coffee = new Coffee();
-        var order = new List<string> ();
-        
-        Assert.That(coffee.GetOrderPrice(order), Is.EqualTo(0));
+        Assert.That(coffee.GetOrderPrice(order), Is.EqualTo(expected));
     }
 }
