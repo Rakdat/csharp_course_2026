@@ -12,4 +12,12 @@ public class CoffeeTest
         var coffee = new Coffee();
         Assert.That(coffee.GetOrderPrice(order), Is.EqualTo(expected));
     }
+
+    [TestCase(new string[] { "Эспресо", "Латте" }, new string[] { "Эспресо x1 100", "Латте x1 200" })]
+
+    public void Strings_Out(string[] order, string[] expected)
+    {
+        var coffee = new Coffee();
+        Assert.That(coffee.Get(order), Is.EqualTo(expected));
+    }
 }
