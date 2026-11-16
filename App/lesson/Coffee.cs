@@ -9,12 +9,17 @@ public class Coffee
         ["Круассан"] = 120m
     };
 
-    public decimal GetOrderPrice(List<string> order)
+    public decimal GetOrderPrice(string[] order)
     {
-        if (order.Count == 0)
+        if (order.Length == 0)
         {
             return 0;
         }
-        return 1;
+        var sum = 0m;
+        foreach (var item in order)
+        {
+            sum += products[item];
+        }
+        return sum;
     }
 }
