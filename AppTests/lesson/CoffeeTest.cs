@@ -6,6 +6,7 @@ public class CoffeeTest
 {
     [TestCase(new string[0], 0)]
     [TestCase(new string[] {"Эспресо"}, 100)]
+    [TestCase(new string[] {"Эспресо", "Эспресо", "Эспресо"}, 300)]
     public void ValidOrder_Returns_ExpectedPrices(string[] order, decimal expected)
     {
         var coffee = new Coffee();
