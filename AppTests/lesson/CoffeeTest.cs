@@ -81,4 +81,13 @@ public class CoffeeTest
             coffee.Add(item);
         Assert.That(coffee.GetOrder(), Is.EqualTo(expected));
     }
+    
+    [TestCase(new string[] { "КаПучино 1", "КаПучино 1" }, new string[] {"капучино x2 300"})]
+    public void AddTheSame(string[] items, string[] expected)
+    {
+        var coffee = new Coffee();
+        foreach (var item in items)
+            coffee.Add(item);
+        Assert.That(coffee.GetOrder(), Is.EqualTo(expected));
+    }
 }
