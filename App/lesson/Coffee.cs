@@ -7,10 +7,10 @@ public class Coffee
 {
     private Dictionary<string, decimal> products = new()
     {
-        ["Эспресо"] = 100m,
-        ["Капучино"] = 150m,
-        ["Круассан"] = 120m,
-        ["Латте"] = 200m
+        ["эспресо"] = 100m,
+        ["капучино"] = 150m,
+        ["круассан"] = 120m,
+        ["латте"] = 200m
     };
 
     private Dictionary<string, int> currentOrder = new();
@@ -19,16 +19,17 @@ public class Coffee
     {
         var parts = order.Split(' ');
         var name = parts[0];
+        var lowername = name.ToLower();
         var count = int.Parse(parts[1]);
         if (count <= 0)
             throw new ArgumentException("Количество товара не может быть меньше либо раавно 0");
-        if (!products.ContainsKey(name))
+        if (!products.ContainsKey(lowername))
             throw new ArgumentException("Такого товара нет");
 
-        if (currentOrder.ContainsKey(name))
-            currentOrder[name] += count;
+        if (currentOrder.ContainsKey(lowername))
+            currentOrder[lowername] += count;
         else
-            currentOrder.Add(name, count);
+            currentOrder.Add(lowername, count);
     }
     
     public decimal GetOrderPrice()
