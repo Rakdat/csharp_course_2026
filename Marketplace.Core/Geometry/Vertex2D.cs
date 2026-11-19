@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace Marketplace.Core.Geometry;
 
 public class Vertex2D : I2DVertex
@@ -10,4 +12,7 @@ public class Vertex2D : I2DVertex
         X = x;
         Y = y;
     }
+
+    public override string ToString() =>
+        string.Create(CultureInfo.InvariantCulture, $"(x = {X:F3}, y = {Y:F3})");
 }
