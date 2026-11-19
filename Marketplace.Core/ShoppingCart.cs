@@ -12,7 +12,7 @@ public class ShoppingCart
         Owner = owner ?? throw new ArgumentNullException(nameof(owner));
     }
 
-    public int Count => products.Count;
+    public int GetCount => products.Count;
 
     public Product this[int index]
     {
@@ -58,13 +58,16 @@ public class ShoppingCart
         secretDiscount = amount;
     }
 
-    public Product[] GetAllProducts()
+    public Product[] GetAllProducts()=> Copy();
+
+    private Product[] Copy()
     {
         var copy = new Product[products.Count];
         for (var i = 0; i < products.Count; i++)
         {
             copy[i] = products[i];
         }
+
         return copy;
     }
 

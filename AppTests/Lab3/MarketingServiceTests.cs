@@ -1,4 +1,3 @@
-
 using Marketplace.Core;
 
 namespace AppTests.Lab3;

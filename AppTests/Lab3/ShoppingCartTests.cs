@@ -1,4 +1,5 @@
 using Marketplace.Core;
+using NUnit.Framework;
 
 namespace AppTests.Lab3;
 
@@ -32,11 +33,9 @@ public class ShoppingCartTests
         var originalProduct = new Product("GPU", 50000m, ProductCategory.Electronics);
         cart.AddProduct(originalProduct);
 
-        // Получаем копию массива и пытаемся затереть элемент
         Product[] externalArray = cart.GetAllProducts();
         externalArray[0] = new Product("HackedItem", 0m, ProductCategory.None);
 
-        // Внутри корзины должен остаться оригинальный товар
         Assert.Multiple(() =>
         {
             Assert.That(cart[0].Name, Is.EqualTo("GPU"));
