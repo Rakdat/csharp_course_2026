@@ -10,10 +10,10 @@ public class User
     private readonly int id;
     private readonly DateTime registerDate;
     private readonly string login;
-    private readonly string password;
-    private readonly string name;
-    private readonly string surname;
-    private readonly string inn;
+    private string password;
+    private string name;
+    private string surname;
+    private string inn;
     private string phone;
     
     public User(string login, string password, string name, string surname, string inn, string phone)
@@ -46,7 +46,8 @@ public class User
     private static bool IsPhoneValid(string input, out string normalized)
     {
         normalized = string.Empty;
-        if (string.IsNullOrWhiteSpace(input)) return false;
+        if (string.IsNullOrWhiteSpace(input))
+            return false;
 
         var sb = new StringBuilder(16);
         sb.Append('+');
@@ -82,9 +83,11 @@ public class User
         }
 
         var digitsCount = sb.Length - 1;
-        if (digitsCount is < 10 or > 15) return false;
+        if (digitsCount is < 10 or > 15)
+            return false;
         normalized = sb.ToString();
         return true;
     }
+    
     public override string ToString() => $"ID: {id}, Login: {login}, Password {password}, Name: {GetUserFullName()}, Phone: {phone}, Inn: {inn}, RegisterDate: {registerDate}";
 }
