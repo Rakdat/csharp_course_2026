@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Core", "Marketp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.App", "Marketplace.App\Marketplace.App.csproj", "{C3F9D488-50D9-4DCD-BB0C-0DE6B893F105}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marketplace.Core.Tests", "Marketplace.Core.Tests\Marketplace.Core.Tests.csproj", "{E5E54D4C-4389-4134-B792-EF39B0BD6D4E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{C3F9D488-50D9-4DCD-BB0C-0DE6B893F105}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3F9D488-50D9-4DCD-BB0C-0DE6B893F105}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3F9D488-50D9-4DCD-BB0C-0DE6B893F105}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5E54D4C-4389-4134-B792-EF39B0BD6D4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5E54D4C-4389-4134-B792-EF39B0BD6D4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5E54D4C-4389-4134-B792-EF39B0BD6D4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5E54D4C-4389-4134-B792-EF39B0BD6D4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

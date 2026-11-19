@@ -1,7 +1,4 @@
-using Marketplace.Core;
-using NUnit.Framework;
-
-namespace AppTests.Lab3;
+namespace Marketplace.Core.Tests;
 
 public class ShoppingCartTests
 {

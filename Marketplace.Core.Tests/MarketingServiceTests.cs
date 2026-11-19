@@ -1,6 +1,4 @@
-using Marketplace.Core;
-
-namespace AppTests.Lab3;
+namespace Marketplace.Core.Tests;
 
 public class MarketingServiceTests
 {
