@@ -6,7 +6,7 @@ public class User
 {
     private static int counter = 0;
 
-    public int Id { get; init; }
+    public Guid Id { get; init; }
     public DateTime RegisterDate { get; init; }
     public string Login { get; init; }
     
@@ -28,7 +28,7 @@ public class User
 
     public User()
     {
-        Id = counter++;
+        Id = Guid.NewGuid();
         RegisterDate = DateTime.Now;
     }
 

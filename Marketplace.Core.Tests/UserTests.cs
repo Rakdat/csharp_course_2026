@@ -53,7 +53,7 @@ public class UserTests
 
         Assert.Multiple(() =>
         {
-            Assert.That(user.Id, Is.GreaterThanOrEqualTo(0));
+            Assert.That(user.Id, Is.GreaterThanOrEqualTo(Guid.Empty));
             Assert.That(user.RegisterDate, Is.GreaterThanOrEqualTo(timeBeforeCreation.AddMilliseconds(-10)));
             Assert.That(user.RegisterDate, Is.LessThanOrEqualTo(timeAfterCreation.AddMilliseconds(10)));
         });

@@ -11,7 +11,7 @@ public static class UserCreator
         return new User(login, passwordHash, name, surname, inn, phone);
     }
 
-    private static string CalculateMd5Hash(string input)
+    internal static string CalculateMd5Hash(string input)
     {
         if (string.IsNullOrEmpty(input))
             return string.Empty;
