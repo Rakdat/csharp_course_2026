@@ -22,7 +22,7 @@ public class User
         get => phone;
         set
         {
-            if (TryUpdatePhone(value))
+            if (!TryUpdatePhone(value))
                 throw new ArgumentException($"Неверный формат номера телефона: {value}");
         }
     }

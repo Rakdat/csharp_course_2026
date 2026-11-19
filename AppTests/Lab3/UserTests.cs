@@ -42,7 +42,7 @@ public class UserTests
     }
 
     [Test]
-    public void DefaultConstructor_SetsIdAndRegisterDate_Correctly()
+    public void DefaultConstructor_SetNonNegativeIdAndCreationTime()
     {
         var timeBeforeCreation = DateTime.Now;
 
