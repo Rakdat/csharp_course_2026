@@ -9,8 +9,8 @@ public class User
 
     public int Id { get; init; }
     public DateTime RegisterDate { get; init; }
+    public string Login { get; init; }
     
-    public string Login { get; set; }
     public string PasswordHash { get; set; }
     public string Name { get; set; }
     public string Surname { get; set; }
@@ -22,9 +22,7 @@ public class User
         get => phone;
         set
         {
-            if (IsPhoneValid(value, out var normalized))
-                phone = normalized;
-            else
+            if (TryUpdatePhone(value))
                 throw new ArgumentException($"Неверный формат номера телефона: {value}");
         }
     }
@@ -58,7 +56,8 @@ public class User
     private static bool IsPhoneValid(string input, out string normalized)
     {
         normalized = string.Empty;
-        if (string.IsNullOrWhiteSpace(input)) return false;
+        if (string.IsNullOrWhiteSpace(input))
+            return false;
 
         var sb = new StringBuilder(16);
         sb.Append('+');
@@ -94,7 +93,8 @@ public class User
         }
 
         var digitsCount = sb.Length - 1;
-        if (digitsCount is < 10 or > 15) return false;
+        if (digitsCount is < 10 or > 15)
+            return false;
         normalized = sb.ToString();
         return true;
     }
